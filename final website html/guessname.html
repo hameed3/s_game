@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Game dev by shibli</title>
+    <!-- 
+        
+        Highway Template
+        
+        https://templatemo.com/tm-520-highway
+        
+        -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.jpg">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/fontAwesome.css">
+    <link rel="stylesheet" href="css/light-box.css">
+    <link rel="stylesheet" href="css/templatemo-style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap 4 CDN -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <title>Guess Game by shibli</title>
+
+</head>
+<style>
+    body {
+        background-image: linear-gradient(lime, yellow);
+    }
+
+    .hint-container {
+        width: 379px;
+        border: 2px solid black;
+        margin: auto;
+        margin-top: 50rem;
+    }
+
+    .h {
+        border: 5px solid darkgreen;
+        margin: 36px 75px 28px 74px;
+        display: flex;
+        flex-direction: column;
+        background-color: blanchedalmond;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <footer>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <p>Copyright &copy; 2020-2023 SHIBLI_GAME_DEVELOPER</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Modal button -->
+    <div class="popup-icon">
+        <button id="modBtn" class="modal-btn"><img src="img/contact-icon.png" alt=""></button>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h3 class="header-title">Say hello to <em>Highway</em></h3>
+                <div class="close-btn"><img src="img/close_contact.png" alt=""></div>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="col-md-6 col-md-offset-3">
+                    <form id="contact" action="" method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input name="name" type="text" class="form-control" id="name"
+                                        placeholder="Your name..." required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input name="email" type="email" class="form-control" id="email"
+                                        placeholder="Your email..." required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <textarea name="message" rows="6" class="form-control" id="message"
+                                        placeholder="Your message..." required></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <button type="submit" id="form-submit" class="btn">Send Message Now</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section class="overlay-menu">
+        <div class="container">
+            <div class="row">
+                <div class="main-menu">
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="about.html">About Us</a>
+                        </li>
+
+                        <li>
+                            <a href="guessname.html">guessname</a>
+                        </li>
+                        <li>
+                            <a href="quizApp.html">quiz App</a>
+                        </li>
+                        <li>
+                            <a href="pong.html">ping pong</a>
+                        </li>
+                        <li>
+                            <a href="snakegame.html">snakegame</a>
+                        </li>
+                        <li>
+                            <a href="brickbreak.html">brickbreak</a>
+                        </li>
+                        <li>
+                            <a href="tetris.html">tetris</a>
+                        </li>
+                        <li>
+                            <a href="m_pong.html">MultiPlayer-pong</a>
+                        </li>
+                        <li>
+                            <a href="flappy_bird.html">Flappy bird</a>
+                        </li>
+                    </ul>
+                    <p>We create awesome Games for you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <div class="container">
+
+        <h1 class="text-center">
+            GUESS THE COMPUTER PARTS
+        </h1>
+
+        <div class="float-right">Wrong Guesses: <span id='mistakes'>0</span> of <span id='maxWrong'></span></div>
+
+        <div class="text-center">
+
+            <!-- <img id='hangmanPic' src="0.png" alt=""> -->
+
+            <p>Guess the Computer part:</p>
+
+            <p id="wordSpotlight" style="color: black;
+            font-size: 10rem;">The word to be guessed goes here</p>
+
+            <div id="keyboard"></div>
+
+            <button class="btn btn-info" onClick="reset()">Reset</button>
+
+        </div>
+
+    </div>
+    <div class="hint-container">
+        <ul>
+            <em>Here Is The First And Last Word Of Guess Game!</em>
+            <br>
+            <br>
+            <span><br>
+                1st
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    M _ _ _ e
+                </li>
+            </span>
+            <span><br>
+                2nd
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    M _ _ _ _ _ r
+                </li>
+            </span>
+            <span><br>
+                3rd
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    E _ _ p _ _ _ _ s
+                </li>
+            </span>
+            <span><br>
+                4th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    H _ _ _ P _ _ _ _ s
+                </li>
+            </span>
+            <span><br>
+                5th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    M _ _ e
+                </li>
+            </span>
+            <span><br>
+                6th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    C _ U
+                </li>
+            </span>
+            <span><br>
+                7th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    U _ S
+                </li>
+            </span>
+            <span><br>
+                8th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    C _
+                </li>
+            </span>
+            <span><br>
+                9th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    M _ _ _ _ _ b _ _ _ d
+                </li>
+            </span>
+            <span><br>
+                10th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    K _ _ p _ _ _ d
+                </li>
+            </span>
+            <span><br>
+                11th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    P _ _ n _ _ r
+                </li>
+            </span>
+            <span><br>
+                12th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    J _ _ S _ _ _ k
+                </li>
+            </span>
+            <span><br>
+                13th
+                <hr style="background-color: black;">
+                <li class="h"><br>
+                    P _ 5
+                </li>
+            </span>
+        </ul>
+
+    </div>
+
+    <script src='guessname.js'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Game dev by shibli</title>
+    <!-- 
+        
+        Highway Template
+        
+        https://templatemo.com/tm-520-highway
+        
+        -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.jpg">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/fontAwesome.css">
+    <link rel="stylesheet" href="css/light-box.css">
+    <link rel="stylesheet" href="css/templatemo-style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        background: black;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container {
+        /*
+  set max-width and max-height to canvas 
+  width/height respectively
+  */
+        max-width: 640px;
+        max-height: 480px;
+        width: 100%;
+        height: 100%;
+    }
+
+    canvas {
+        outline: 1px solid white;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+</style>
+
+<body>
+    <footer>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <p>Copyright &copy; 2020-2023 SHIBLI_GAME_DEVELOPER</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Modal button -->
+    <div class="popup-icon">
+        <button id="modBtn" class="modal-btn"><img src="img/contact-icon.png" alt=""></button>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h3 class="header-title">Say hello to <em>Highway</em></h3>
+                <div class="close-btn"><img src="img/close_contact.png" alt=""></div>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="col-md-6 col-md-offset-3">
+                    <form id="contact" action="" method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input name="name" type="text" class="form-control" id="name"
+                                        placeholder="Your name..." required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <input name="email" type="email" class="form-control" id="email"
+                                        placeholder="Your email..." required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <textarea name="message" rows="6" class="form-control" id="message"
+                                        placeholder="Your message..." required></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <button type="submit" id="form-submit" class="btn">Send Message Now</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section class="overlay-menu">
+        <div class="container">
+            <div class="row">
+                <div class="main-menu">
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="about.html">About Us</a>
+                        </li>
+
+                        <li>
+                            <a href="guessname.html">guessname</a>
+                        </li>
+                        <li>
+                            <a href="quizApp.html">quiz App</a>
+                        </li>
+                        <li>
+                            <a href="pong.html">ping pong</a>
+                        </li>
+                        <li>
+                            <a href="snakegame.html">snakegame</a>
+                        </li>
+                        <li>
+                            <a href="brickbreak.html">brickbreak</a>
+                        </li>
+                        <li>
+                            <a href="tetris.html">tetris</a>
+                        </li>
+                        <li>
+                            <a href="m_pong.html">MultiPlayer-pong</a>
+                        </li>
+                        <li>
+                            <a href="flappy_bird.html">Flappy bird</a>
+                        </li>
+                    </ul>
+                    <p>We create awesome Games for you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <!-- 
+Try resizing the screen both vertically and horizontally. The canvas will maintain the defined width/height aspect ratio.
+-->
+
+    <div class="container">
+        <canvas id="c" width="640" height="480" style="background:#000"></canvas>
+    </div>
+    <script>
+        /**
+ * Pong code taken from http://codegolf.stackexchange.com/questions/10713/pong-in-the-shortest-code
+ * to demonstrate responsive canvas
+ */
+
+        c = document.getElementById('c').getContext('2d')
+        c.fillStyle = "#FFF"
+        c.font = "60px monospace"
+        w = s = 1
+        p = q = a = b = 0
+        m = n = 190
+        x = 300; y = 235
+        u = -5; v = 3
+        setInterval(function () {
+            if (w && !s) return; s = 0
+            c.clearRect(0, 0, 640, 480)
+            for (i = 5; i < 480; i += 20)c.fillRect(318, i, 4, 10)
+            m += p; n += q
+            m = m < 0 ? 0 : m; m = m > 380 ? 380 : m
+            n = n < 0 ? 0 : n; n = n > 380 ? 380 : n
+            x += u; y += v
+            if (y <= 0) { y = 0; v = -v }
+            if (y >= 470) { y = 470; v = -v }
+            if (x <= 40 && x >= 20 && y < m + 110 && y > m - 10) { u = -u + 0.2; v += (y - m - 45) / 20 }
+            if (x <= 610 && x >= 590 && y < n + 110 && y > n - 10) { u = -u - 0.2; v += (y - n - 45) / 20 }
+            if (x < -10) { b++; x = 360; y = 235; u = 5; w = 1 }
+            if (x > 640) { a++; x = 280; y = 235; u = -5; w = 1 }
+            c.fillText(a + " " + b, 266, 60)
+            c.fillRect(20, m, 20, 100)
+            c.fillRect(600, n, 20, 100)
+            c.fillRect(x, y, 10, 10)
+        }, 30)
+        document.onkeydown = function (e) { k = (e || window.event).keyCode; w = w ? 0 : k == '27' ? 1 : 0; p = k == '65' ? 5 : k == '81' ? -5 : p; q = k == '40' ? 5 : k == '38' ? -5 : q; }
+        document.onkeyup = function (e) { k = (e || window.event).keyCode; p = k == '65' || k == '81' ? 0 : p; q = k == '38' || k == '40' ? 0 : q }
+
+
+        /* Variable index:
+        a -> left player score
+        b -> right player score
+        c -> context
+        e -> event
+        i -> counter for dashed line
+        k -> keycode
+        m -> left paddle y
+        n -> right paddle y
+        p -> left paddle y velocity
+        q -> right paddle y velocity
+        s -> is start of game
+        u -> ball x velocity
+        v -> ball y velocity
+        w -> game is waiting (paused)
+        x -> ball x
+        y -> ball y
+        */
+    </script>
+</body>
+
+</html>
